@@ -23,7 +23,8 @@ class _BmrInputUIState extends State<BmrInputUI> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.blue,
-          title: Text('กรอกข้อมูลไม่ครบ', style: TextStyle(color: Colors.redAccent)),
+          title: Text('กรอกข้อมูลไม่ครบ',
+              style: TextStyle(color: Colors.redAccent)),
           content: Text(message, style: TextStyle(color: Colors.white)),
           actions: [
             TextButton(
@@ -37,20 +38,20 @@ class _BmrInputUIState extends State<BmrInputUI> {
   }
 
   void calculateBMR() {
-  if (ageController.text.isEmpty) {
-    showErrorPopup("กรุณากรอกอายุ");
-    return;
-  }
+    if (ageController.text.isEmpty) {
+      showErrorPopup("กรุณากรอกอายุ");
+      return;
+    }
 
-  if (weightController.text.isEmpty) {
-    showErrorPopup("กรุณากรอกน้ำหนัก");
-    return;
-  }
+    if (weightController.text.isEmpty) {
+      showErrorPopup("กรุณากรอกน้ำหนัก");
+      return;
+    }
 
-  if (heightController.text.isEmpty) {
-    showErrorPopup("กรุณากรอกส่วนสูง");
-    return;
-  }
+    if (heightController.text.isEmpty) {
+      showErrorPopup("กรุณากรอกส่วนสูง");
+      return;
+    }
 
     double weight = double.tryParse(weightController.text) ?? 0;
     double height = double.tryParse(heightController.text) ?? 0;
@@ -88,6 +89,13 @@ class _BmrInputUIState extends State<BmrInputUI> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Center(
+              child: Image.asset(
+                'assets/images/go.jpg', // ใช้รูปใน assets
+                height: 180,
+                fit: BoxFit.contain,
+              ),
+            ),
             if (calculatedBmr != null) ...[
               Center(
                 child: Column(
@@ -112,10 +120,12 @@ class _BmrInputUIState extends State<BmrInputUI> {
                 ),
               ),
             ],
-
-            Text("Your Information", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Your Information",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
-
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -174,7 +184,6 @@ class _BmrInputUIState extends State<BmrInputUI> {
                 ],
               ),
             ),
-
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: calculateBMR,
